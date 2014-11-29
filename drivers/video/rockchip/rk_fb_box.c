@@ -2797,7 +2797,8 @@ int rk_fb_register(struct rk_lcdc_driver *dev_drv,
 	}
 
 	/* show logo for primary display device */
-#if !defined(CONFIG_FRAMEBUFFER_CONSOLE) && defined(CONFIG_LOGO)
+// #if !defined(CONFIG_FRAMEBUFFER_CONSOLE) && defined(CONFIG_LOGO)
+#if defined(CONFIG_LOGO)
 	if (dev_drv->prop == PRMRY) {
 		struct fb_info *main_fbi = rk_fb->fb[0];
 	main_fbi->fbops->fb_open(main_fbi, 2);
