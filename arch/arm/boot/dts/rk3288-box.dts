@@ -321,6 +321,18 @@
         pinctrl-0 = <&uart0_xfer &uart0_cts>;
 };
 
+&uart_bb {
+        status = "okay";
+        dma-names = "!tx", "!rx";
+        pinctrl-0 = <&uart1_xfer &uart1_cts &uart1_rts>;
+};
+
+&uart_gps {
+        status = "okay";
+        dma-names = "!tx", "!rx";
+        pinctrl-0 = <&uart3_xfer &uart3_cts>;
+};
+
 &i2c0 {
 	status = "okay";
 	rk808: rk808@1b {
