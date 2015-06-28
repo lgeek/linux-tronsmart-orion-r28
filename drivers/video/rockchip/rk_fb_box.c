@@ -31,6 +31,7 @@
 #include <linux/dma-mapping.h>
 
 //#define DUAL_LCDC_MAP_TO_SAME_FB
+#define CONFIG_RK_32BIT_FB
 
 #ifdef CONFIG_OF
 #include <linux/of.h>
@@ -2212,7 +2213,7 @@ static struct fb_ops fb_ops = {
 };
 
 static struct fb_var_screeninfo def_var = {
-#if defined(CONFIG_LOGO_LINUX_BMP)
+#if defined(CONFIG_LOGO_LINUX_BMP) || defined(CONFIG_RK_32BIT_FB)
 	.red = {16, 8, 0},
 	.green = {8, 8, 0},
 	.blue = {0, 8, 0},
@@ -2724,7 +2725,7 @@ int rk_fb_register(struct rk_lcdc_driver *dev_drv,
 		fb_videomode_to_var(&fbi->var, &dev_drv->cur_screen->mode);
 		fbi->var.grayscale |=
 		    (fbi->var.xres << 8) + (fbi->var.yres << 20);
-#if defined(CONFIG_LOGO_LINUX_BMP)
+#if defined(CONFIG_LOGO_LINUX_BMP) || defined(CONFIG_RK_32BIT_FB)
 		fbi->var.bits_per_pixel = 32;
 #else
 		fbi->var.bits_per_pixel = 16;
