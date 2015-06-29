@@ -505,6 +505,9 @@ static void __init rk3288_init_late(void)
 }
 
 DT_MACHINE_START(RK3288_DT, "Rockchip RK3288 (Flattened Device Tree)")
+#if defined(CONFIG_ZONE_DMA) && defined(CONFIG_ARM_LPAE)
+	.dma_zone_size  = (4UL * SZ_1G),
+#endif
 	.smp		= smp_ops(rockchip_smp_ops),
 	.map_io		= rk3288_dt_map_io,
 	.init_time	= rk3288_dt_init_timer,
